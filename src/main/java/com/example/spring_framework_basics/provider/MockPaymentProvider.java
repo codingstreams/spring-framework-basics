@@ -1,0 +1,11 @@
+package com.example.spring_framework_basics.provider;
+
+import com.example.spring_framework_basics.model.Payment;
+
+public class MockPaymentProvider implements PaymentProvider {
+
+    @Override
+    public void process(Payment payment) {
+        System.out.println("Mock Payment: Authorizing " + payment);
+    }
+}
