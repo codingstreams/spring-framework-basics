@@ -1,7 +1,9 @@
 package com.example.spring_framework_basics.provider;
 
 import com.example.spring_framework_basics.model.Payment;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MockPaymentProvider implements PaymentProvider {
 
   @Override

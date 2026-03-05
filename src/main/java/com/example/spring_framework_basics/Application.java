@@ -1,12 +1,20 @@
+package com.example.spring_framework_basics;
+
 import com.example.spring_framework_basics.model.Payment;
-import com.example.spring_framework_basics.provider.MockPaymentProvider;
-import com.example.spring_framework_basics.service.PaymentServiceImpl;
+import com.example.spring_framework_basics.service.PaymentService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-void main() {
-  var paymentProvider = new MockPaymentProvider();
-  var paymentService = new PaymentServiceImpl(paymentProvider);
+@SpringBootApplication
+public class Application {
 
-  var payment = new Payment("TX_01", 5466.78, "INR");
+  static void main(String[] args) {
+    var applicationContext = SpringApplication.run(Application.class, args);
+    var paymentService = applicationContext.getBean(PaymentService.class);
+    var payment = new Payment("TX_01", 5466.78, "INR");
 
-  paymentService.executePayment(payment);
+    paymentService.executePayment(payment);
+  }
+
 }
+

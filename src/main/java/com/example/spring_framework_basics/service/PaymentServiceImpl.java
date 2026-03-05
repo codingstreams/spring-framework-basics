@@ -2,9 +2,11 @@ package com.example.spring_framework_basics.service;
 
 import com.example.spring_framework_basics.model.Payment;
 import com.example.spring_framework_basics.provider.PaymentProvider;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
+@Component
 public class PaymentServiceImpl implements PaymentService {
   private final PaymentProvider paymentProvider;
 
