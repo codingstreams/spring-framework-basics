@@ -3,7 +3,7 @@
 - Consider the following project and let's understand that why this `new` keyword is a problematic when we talk about
   *Big Enterprise Level Applications*.
 
-![Project Overview](notes/resources/diagrams/chapter-01-01.png "Project Overview")
+![Project Overview](/notes/resources/diagrams/chapter-01-01.png "Project Overview")
 
 ```java
 void main(){
