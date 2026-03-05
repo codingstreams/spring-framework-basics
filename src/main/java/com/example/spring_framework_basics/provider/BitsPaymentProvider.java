@@ -4,8 +4,8 @@ import com.example.spring_framework_basics.model.Payment;
 
 public class BitsPaymentProvider implements PaymentProvider {
 
-    @Override
-    public void process(Payment payment) {
-        System.out.println("Bits Payment: Authorizing " + payment);
-    }
+  @Override
+  public void process(Payment payment) {
+    System.out.println("Bits Payment: Authorizing " + payment);
+  }
 }
