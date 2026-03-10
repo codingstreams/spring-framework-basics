@@ -7,6 +7,7 @@ import com.example.spring_framework_basics.provider.PaymentProvider;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.jspecify.annotations.NonNull;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -16,15 +17,15 @@ import java.util.Objects;
 public class PaymentServiceImpl implements PaymentService {
   private final PaymentProvider paymentProvider;
   private final CurrencyConverter currencyConverter;
-  private final PaymentAuditLogger paymentAuditLogger;
+  private final ObjectProvider<PaymentAuditLogger> objectProvider;
 
   public PaymentServiceImpl(
       @Qualifier("defaultPaymentProvider") PaymentProvider paymentProvider,
       CurrencyConverter converter,
-      PaymentAuditLogger paymentAuditLogger) {
+      ObjectProvider<PaymentAuditLogger> objectProvider) {
     this.paymentProvider = paymentProvider;
     this.currencyConverter = converter;
-    this.paymentAuditLogger = paymentAuditLogger;
+    this.objectProvider = objectProvider;
   }
 
   @PostConstruct
@@ -43,6 +44,7 @@ public class PaymentServiceImpl implements PaymentService {
 
   @Override
   public Boolean executePayment(@NonNull Payment payment) {
+    var paymentAuditLogger = objectProvider.getObject();
 
     paymentAuditLogger.logStep("Starting payment for: " + payment.amount());
     if (payment.amount() <= 0) {
